@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 文章標題 -->
+    <title>什麼是 Nmap？網路安全的第一道防線 - 我的新聞網站</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Inter 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 優先使用 Inter，並為繁體中文指定 Noto Sans TC */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        /* 為文章內容提供更好的排版 */
+        .article-content h2 {
+            font-size: 1.875rem; /* 2xl */
+            font-weight: 700;
+            margin-top: 2.5rem; /* mt-10 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .article-content p {
+            font-size: 1.125rem; /* lg */
+            line-height: 1.75; /* leading-7 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .article-content pre {
+            background-color: #2d3748; /* bg-gray-800 */
+            color: #0000E3; /* text-gray-200 */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow-x: auto;
+            margin-bottom: 1.5rem; /* mb-6 */
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .article-content code {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
+            border-radius: 0.25rem; /* rounded */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 網站標題欄 -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">
+                    <a href="index.html">我的新聞網站</a>
+                </h1>
+                <p class="text-gray-600 mt-1">專注於最新動態與深度報導</p>
+            </div>
+            <a href="index.html" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300">
+                &larr; 返回首頁
+            </a>
+        </div>
+    </header>
+
+    <!-- 主要文章內容 -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white rounded-lg shadow-xl overflow-hidden p-8 md:p-12">
+            
+            <!-- 文章標題 -->
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                什麼是 Nmap？網路安全的第一道防線
+            </h1>
+
+            <!-- 文章資訊 -->
+            <div class="text-gray-600 text-lg mb-8">
+                <span>發布日期：2025-11-15</span>
+                <span class="mx-2">|</span>
+                <span>分類：網路安全</span>
+            </div>
+
+            <!-- 文章主體 -->
+            <div class="article-content">
+                <p>
+                    在網路安全的世界中，`Nmap` (Network Mapper) 是一個傳奇性的工具。無論您是系統管理員、網路工程師，還是正在學習資訊安全的愛好者，Nmap 都是您工具箱中不可或缺的瑞士刀。
+                </p>
+
+                <p>
+                    簡單來說，Nmap 是一個免費且開源的網路掃描工具，它被用來「探索」網路並執行安全稽核。它可以快速告訴您網路上有哪些主機是存活的、這些主機提供了哪些服務（例如網站、Email服務），以及它們可能運行的作業系統。
+                </p>
+
+                <h2>Nmap 能做什麼？</h2>
+                <p>
+                    Nmap 的功能非常強大，但核心功能主要有以下幾點：
+                </p>
+                <ul class="list-disc list-inside text-lg mb-6 pl-4">
+                    <li class="mb-2"><strong>主機探索 (Host Discovery)：</strong> 找出網路上有哪些裝置是開機且連線的。</li>
+                    <li class="mb-2"><strong>連接埠掃描 (Port Scanning)：</strong> 偵測目標主機上有哪些網路連接埠（Port）是開放的。每個開放的連接埠都代表一項服務。</li>
+                    <li class="mb-2"><strong>服務與版本偵測 (Service and Version Detection)：</strong> 查出開放埠口上運行的具體服務名稱和版本號（例如：Apache 2.4.58）。</li>
+                    <li class="mb-2"><strong>作業系統偵測 (OS Detection)：</strong> 根據網路指紋（fingerprinting）猜測目標主機的作業系統（例如：Windows 11, Linux Kernel 6.x）。</li>
+                </ul>
+                
+                <h2>如何使用 Nmap？</h2>
+                <p>
+                    Nmap 是一個命令列工具，但也有圖形介面版本叫做 `Zenmap`。您需要先從 <a href="https://nmap.org/" target="_blank" class="text-blue-600 hover:underline">Nmap 官方網站</a> 下載並安裝它。
+                </p>
+                <p>
+                    安裝完成後，打開您的終端機（Terminal）或命令提示字元（cmd），就可以開始使用了。
+                </p>
+
+                <h2>基本掃描範例</h2>
+                <p>
+                    以下是幾個最常用的 Nmap 指令範例：
+                </p>
+
+                <p><strong>1. 掃描單一主機 (基本 Ping 掃描)：</strong></p>
+                <pre><code># 這會對目標IP進行快速掃描，找出開放的連接埠
+nmap 192.168.1.1</code></pre>
+
+                <p><strong>2. 掃描一個網段：</strong></p>
+                <pre><code># 掃描 192.168.1.1 到 192.168.1.254 所有的主機
+nmap 192.168.1.0/24</code></pre>
+
+                <p><strong>3. 偵測服務與版本 (強力掃描)：</strong></p>
+                <pre><code># -sV 會嘗試偵測服務版本
+# -O 會嘗試偵測作業系統
+nmap -sV -O scanme.nmap.org</code></pre>
+                
+                <p class="font-bold text-red-600 bg-red-100 p-4 rounded-lg">
+                    ⚠️ <strong>重要警告：</strong> 未經授權掃描不屬於您的網路或伺服器是非法行為。請僅在您有權限的網路上（例如您自己的家用網路或受邀的測試環境）使用 Nmap。
+                </p>
+
+                <h2>為什麼 Nmap 很重要？</h2>
+                <p>
+                    從「攻擊者」的角度來看，Nmap 是收集情資的第一步，用來尋找系統的弱點。
+                </p>
+                <p>
+                    而從「防禦者」（系統管理員）的角度來看，Nmap 是最好的安全稽核工具。您可以定期掃描自己的網路，確保沒有「不該開放」的服務被暴露在網路上，從而及時修補漏洞。
+                </p>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 我的新聞網站. 保留所有權利。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
