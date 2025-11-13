@@ -3,84 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新聞頁面範例</title>
+    <title>我的新聞網站</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Inter 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, "微軟正黑體", sans-serif; background: #f6f6f6; margin: 0; }
-        header { background: #223366; color: #fff; padding: 16px; }
-        header .logo { font-size: 2em; font-weight: bold; }
-        nav { margin-top: 12px; }
-        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-        .container { display: flex; max-width: 1200px; margin: 20px auto; gap: 24px; }
-        main { flex: 3; }
-        aside { flex: 1; background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px #eee; }
-        .headline { background: #fff; padding: 16px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 6px #eee; }
-        .headline img { width: 100%; border-radius: 8px; }
-        .headline .title { font-size: 1.5em; margin: 12px 0; }
-        .news-list { display: flex; flex-direction: column; gap: 16px; }
-        .news-item { background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px #eee; display: flex; gap: 12px; }
-        .news-item img { width: 120px; height: 80px; object-fit: cover; border-radius: 8px; }
-        .news-info { flex: 1; }
-        .news-title { font-weight: bold; margin-bottom: 8px; }
-        .news-meta { font-size: 0.9em; color: #888; margin-bottom: 4px; }
+        /* 優先使用 Inter，並為繁體中文指定 Noto Sans TC */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo">新聞快訊</div>
-        <nav>
-            <a href="#">首頁</a>
-            <a href="#">國際</a>
-            <a href="#">財經</a>
-            <a href="#">科技</a>
-            <a href="#">娛樂</a>
-            <a href="#">運動</a>
-        </nav>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 網站標題欄 -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <h1 class="text-4xl font-bold text-gray-900">
+                我的新聞網站
+            </h1>
+            <p class="text-gray-600 mt-1">專注於最新動態與深度報導</p>
+        </div>
     </header>
-    <div class="container">
-        <main>
-            <section class="headline">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="頭條新聞圖片">
-                <div class="title">重大頭條：全球經濟動盪</div>
-                <div class="news-meta">2025-11-13　|　By 新聞小編</div>
-                <p>
-                    全球經濟受各地衝突與政策影響，今日各大股市波動劇烈，專家建議投資人保持冷靜。
-                </p>
-            </section>
-            <section class="news-list">
-                <div class="news-item">
-                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="新聞圖片1">
-                    <div class="news-info">
-                        <div class="news-title">科技新突破：AI助力醫療診斷</div>
-                        <div class="news-meta">2025-11-13 | 科技</div>
-                        <p>新一代人工智慧系統能更準確分析醫療數據，提升診斷效率與準確率。</p>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- 焦點新聞 -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">焦點新聞</h2>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <!-- 
+                  重要提示：
+                  您需要將您的 article-1.md 轉換為 article-1.html，
+                  然後將下面的 href 連結替換為 'article-1.html'。
+                -->
+                <a href="article-1.html" class="block group">
+                    <div class="md:flex">
+                        <!-- 圖片區 -->
+                        <div class="md:w-1/2">
+                            <img class="h-64 w-full object-cover md:h-full" 
+                                 src="https://placehold.co/800x600/3459e6/white?text=焦點新聞圖片" 
+                                 alt="焦點新聞的圖片描述">
+                        </div>
+                        <!-- 文字區 -->
+                        <div class="p-8 md:w-1/2 flex flex-col justify-center">
+                            <span class="text-sm font-semibold text-blue-600 uppercase tracking-wide">分類：科技</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+                                這是一篇焦點新聞標題
+                            </h3>
+                            <p class="text-gray-700 text-lg mb-6">
+                                這是這篇焦點新聞的簡短摘要... 說明這篇文章的核心內容，吸引讀者點擊閱讀。
+                            </p>
+                            <div class="flex items-center">
+                                <span class="text-gray-600">閱讀更多 &rarr;</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="news-item">
-                    <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=400&q=80" alt="新聞圖片2">
-                    <div class="news-info">
-                        <div class="news-title">運動熱潮：馬拉松賽事盛況空前</div>
-                        <div class="news-meta">2025-11-13 | 運動</div>
-                        <p>本屆城市馬拉松吸引上萬人參與，展現健康生活新風潮。</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <aside>
-            <h3>熱門新聞</h3>
-            <ul>
-                <li><a href="#">氣候變遷下的農業革命</a></li>
-                <li><a href="#">娛樂圈新星閃耀登場</a></li>
-                <li><a href="#">全球旅遊解封新展望</a></li>
-            </ul>
-            <h3>分類</h3>
-            <ul>
-                <li><a href="#">國際</a></li>
-                <li><a href="#">財經</a></li>
-                <li><a href="#">科技</a></li>
-                <li><a href="#">娛樂</a></li>
-                <li><a href="#">運動</a></li>
-            </ul>
-        </aside>
-    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 最新文章列表 -->
+        <section>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">最新文章</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- 文章卡片 1 (範本) -->
+                <article class="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                    <!-- 
+                      提示：將 href 替換為您的 article-2.html
+                    -->
+                    <a href="article-2.html" class="block group">
+                        <img class="h-48 w-full object-cover" 
+                             src="https://placehold.co/600x400/eeeeee/555555?text=文章縮圖" 
+                             alt="文章標題二的圖片描述">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-gray-600">2025-11-14</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 h-20 group-hover:text-blue-600 transition-colors duration-300">
+                                文章標題二：探討一個有趣的主題
+                            </h3>
+                            <p class="text-gray-700 text-sm mb-4">
+                                這是第二篇文章的簡短摘要...
+                            </p>
+                            <span class="font-semibold text-blue-600 group-hover:text-blue-800">閱讀全文</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 文章卡片 2 (範本) -->
+                <article class="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                    <a href="article-3.html" class="block group">
+                        <img class="h-48 w-full object-cover" 
+                             src="https://placehold.co/600x400/eeeeee/555555?text=文章縮圖" 
+                             alt="文章標題三的圖片描述">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-gray-600">2025-11-13</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 h-20 group-hover:text-blue-600 transition-colors duration-300">
+                                文章標題三：另一個重要的事件報導
+                            </h3>
+                            <p class="text-gray-700 text-sm mb-4">
+                                這是第三篇文章的簡短摘要...
+                            </p>
+                            <span class="font-semibold text-blue-600 group-hover:text-blue-800">閱讀全文</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 文章卡片 3 (範本) -->
+                <article class="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                    <a href="article-4.html" class="block group">
+                        <img class="h-48 w-full object-cover" 
+                             src="https://placehold.co/600x400/eeeeee/555555?text=文章縮圖" 
+                             alt="文章標題四的圖片描述">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-gray-600">2025-11-12</span>
+                            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 h-20 group-hover:text-blue-600 transition-colors duration-300">
+                                文章標題四：財經市場分析
+                            </h3>
+                            <p class="text-gray-700 text-sm mb-4">
+                                這是第四篇文章的簡短摘要...
+                            </p>
+                            <span class="font-semibold text-blue-600 group-hover:text-blue-800">閱讀全文</span>
+                        </div>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 我的新聞網站. 保留所有權利。</p>
+        </div>
+    </footer>
+
 </body>
 </html>
