@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 文章標題 -->
+    <title>什麼是網路服務(Port)？一篇搞懂 Telnet, SSH, HTTP, RDP - 我的新聞網站</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Inter 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 優先使用 Inter，並為繁體中文指定 Noto Sans TC */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        /* 為文章內容提供更好的排版 */
+        .article-content h2 {
+            font-size: 1.875rem; /* 2xl */
+            font-weight: 700;
+            margin-top: 2.5rem; /* mt-10 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .article-content p {
+            font-size: 1.125rem; /* lg */
+            line-height: 1.75; /* leading-7 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .article-content pre {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow-x: auto;
+            margin-bottom: 1.5rem; /* mb-6 */
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .article-content code {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
+            border-radius: 0.25rem; /* rounded */
+            font-weight: 600;
+        }
+        .article-content th {
+            background-color: #f9fafb; /* bg-gray-50 */
+            padding: 0.75rem 1rem; /* p-3 px-4 */
+            text-align: left;
+            font-weight: 600;
+        }
+        .article-content td {
+            padding: 0.75rem 1rem; /* p-3 px-4 */
+            border-top: 1px solid #e5e7eb; /* border-t */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 網站標題欄 -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">
+                    <a href="index.html">我的新聞網站</a>
+                </h1>
+                <p class="text-gray-600 mt-1">專注於最新動態與深度報導</p>
+            </div>
+            <a href="index.html" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300">
+                &larr; 返回首頁
+            </a>
+        </div>
+    </header>
+
+    <!-- 主要文章內容 -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white rounded-lg shadow-xl overflow-hidden p-8 md:p-12">
+            
+            <!-- 文章標題 -->
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                什麼是網路服務(Port)？一篇搞懂 Telnet, SSH, HTTP, RDP
+            </h1>
+
+            <!-- 文章資訊 -->
+            <div class="text-gray-600 text-lg mb-8">
+                <span>發布日期：2025-11-16</span>
+                <span class="mx-2">|</span>
+                <span>分類：網路基礎</span>
+            </div>
+
+            <!-- 文章主體 -->
+            <div class="article-content">
+                <p>
+                    在上一篇 <a href="article-3.html" class="text-blue-600 hover:underline">Nmap 教學</a>中，我們提到了「連接埠掃描 (Port Scanning)」。但什麼是連接埠 (Port)？它又和網路服務 (Service) 有什麼關係？
+                </p>
+
+                <p>
+                    您可以把電腦的 IP 位址（例如 `192.168.1.100`）想像成一棟公寓大樓的地址。而**連接埠 (Port)** 就是這棟大樓裡**每個房間的房號**。
+                </p>
+                <p>
+                    每當電腦需要提供一項服務（例如網站服務），它就會在特定的一個「房號」上等待。當您的瀏覽器要訪問這個網站時，它不僅需要知道大樓地址 (IP)，還需要知道房號 (Port)，這樣才能正確找到服務。
+                </p>
+                <p>
+                    以下我們將介紹幾個最常見的網路服務，以及它們預設使用的「房號」(Port)。
+                </p>
+
+                <div class="overflow-x-auto rounded-lg border my-8">
+                    <table class="w-full text-lg">
+                        <thead>
+                            <tr>
+                                <th>服務名稱 (Protocol)</th>
+                                <th>協定類型 (Protocol)</th>
+                                <th>預設埠號 (Default Port)</th>
+                                <th>備註 (Note)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Telnet</td>
+                                <td>TCP</td>
+                                <td>23</td>
+                                <td>傳輸明文資料，極不安全。</td>
+                            </tr>
+                            <tr>
+                                <td>SSH (Secure Shell)</td>
+                                <td>TCP</td>
+                                <td>22</td>
+                                <td>安全的遠端登入與指令執行。</td>
+                            </tr>
+                            <tr>
+                                <td>HTTP</td>
+                                <td>TCP</td>
+                                <td>80</td>
+                                <td>網站傳輸協定，未加密。安全替代方案為 HTTPS (443)。</td>
+                            </tr>
+                            <tr>
+                                <td>FTP (File Transfer)</td>
+                                <td>TCP</td>
+                                <td>21</td>
+                                <td>傳輸明文</td>
+                            </tr>
+                            <tr>
+                                <td>NFS (Network File System)</td>
+                                <td>UDP / TCP</td>
+                                <td>2049</td>
+                                <td>舊版通常為 UDP/2049加密較為簡易</td>
+                            </tr>
+                            <tr>
+                                <td>SMB (Server Message Block)</td>
+                                <td>TCP</td>
+                                <td>445</td>
+                                <td>用於 Windows 檔案和印表機共享。在較舊系統中可能仍使用 NetBIOS over TCP/IP (Port 137, 138, 139)。</td>
+                            </tr>
+                            <tr>
+                                <td>RDP (Remote Desktop Protocol)</td>
+                                <td>TCP</td>
+                                <td>3389</td>
+                                <td>遠端桌面連線。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Telnet (Port 23)</h2>
+                <p>
+                    Telnet 是一種非常古老的遠端連線協定。它允許您從一台電腦登入到另一台遠端的主機，並像在本地一樣操作它的命令列（文字介面）。
+                </p>
+                <p>
+                    <strong>⚠️ 安全警告：</strong> Telnet 最大的問題是它所有的傳輸內容，包括您輸入的帳號和密碼，都是**「明文傳輸」**（沒有加密）。這意味著網路上的任何人都可以輕易竊聽到您的登入資訊。因此，Telnet 現在幾乎已被完全淘汰，**絕對不應該**在公共網路上使用。
+                </p>
+
+                <h2>SSH (Port 22)</h2>
+                <p>
+                    <code>SSH</code> (Secure Shell) 是 Telnet 的現代繼承者。它的功能與 Telnet 相同——提供遠端命令列存取——但它解決了 Telnet 最大的安全缺陷。
+                </p>
+                <p>
+                    SSH 會在您的電腦和遠端主機之間建立一個**「加密通道」**。所有傳輸的資料（包括密碼）都會被加密，確保駭客無法竊聽。SSH 是目前管理 Linux/macOS 伺服器的標準作法。
+                </p>
+
+                <h2>HTTP (Port 80)</h2>
+                <p>
+                    <code>HTTP</code> (Hypertext Transfer Protocol) 是您我每天都在使用的協定。當您在瀏覽器網址列輸入一個 `http://` 開頭的網址時，您的瀏覽器就是透過 80 Port 向網站伺服器請求網頁資料。
+                </p>
+                <p>
+                    (您在列表中提到了兩次 http，我猜其中一個是指 `HTTPS`，這更為重要。)
+                </p>
+
+                <h2>HTTPS (Port 443)</h2>
+                <p>
+                    <code>HTTPS</code> (HTTP Secure) 是 HTTP 的安全版本。就像 SSH 保護 Telnet 一樣，HTTPS 使用加密（通常是 SSL/TLS 憑證）來保護您和網站之間的通訊。
+                </p>
+                <p>
+                    當您在網站上輸入密碼、信用卡號或個人資料時，HTTPS 可以確保這些資訊不會在傳輸過程中被竊取。這就是為什麼現代瀏覽器會將使用 Port 80 (HTTP) 的網站標記為「不安全」，並優先使用 Port 443 (HTTPS)。
+                </p>
+
+                <h2>RDP (Port 3389)</h2>
+                <p>
+                    <code>RDP</code> (Remote Desktop Protocol) 是由微軟開發的協定。與 SSH 或 Telnet 只傳輸文字不同，RDP 允許您遠端存取一台 Windows 電腦的**完整圖形桌面**。
+                </p>
+                <p>
+                    當您使用 Windows 內建的「遠端桌面連線」功能時，您就是在透過 3389 Port 連線到另一台電腦，操作它的滑鼠和鍵盤，就像您親自坐在那台電腦前面一樣。
+                </p>
+
+                <h2>FTP (Port 21)</h2>
+                <p>
+                    <code>FTP</code> (File Transfer Protocol) 是一種專門用來在網路上傳輸檔案的古老協定。Port 21 用於建立連線和傳輸指令，而資料傳輸本身通常會使用另一個 Port (Port 20 或動態 Port)。
+                </p>
+                <p>
+                    <strong>⚠️ 安全警告：</strong> 類似 Telnet，標準的 FTP 也是以**明文**傳輸帳號、密碼和檔案內容，非常不安全。現在強烈建議使用其安全版本，如 `SFTP` (基於 SSH) 或 `FTPS` (基於 SSL/TLS)。
+                </p>
+
+                <h2>NFS (Port 2049)</h2>
+                <p>
+                    <code>NFS</code> (Network File System) 主要用於 Unix 和 Linux 系統之間，它允許一台電腦上的使用者像存取本地檔案一樣，存取網路上另一台電腦的檔案系統。
+                </p>
+                <p>
+                    舊版的 NFS 主要使用 UDP，而新版本 (NFSv4) 則強烈建議並主要使用 TCP，以提供更可靠的連線。
+                </p>
+
+                <h2>SMB (Port 445)</h2>
+                <p>
+                    <code>SMB</code> (Server Message Block) 是 Windows 系統檔案共享的核心協定。當您在 Windows「網路上的芳鄰」中存取另一台電腦的共享資料夾或印表機時，您就是在使用 SMB。
+                </p>
+                <p>
+                    在現代 Windows 系統中，SMB 直接運作在 TCP 445 Port 上。在非常老舊的系統 (Windows 2000 之前)，它可能還會依賴 NetBIOS (Port 137-139)。
+                </p>
+
+            </div>
+
+        </article>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 我的新聞網站. 保留所有權利。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
