@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 文章標題 -->
+    <title>什麼是 ARP 欺騙 (Arpspoofing)？一篇搞懂中間人攻擊 - 我的新聞網站</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Inter 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 優先使用 Inter，並為繁體中文指定 Noto Sans TC */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        /* 為文章內容提供更好的排版 */
+        .article-content h2 {
+            font-size: 1.875rem; /* 2xl */
+            font-weight: 700;
+            margin-top: 2.5rem; /* mt-10 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .article-content p {
+            font-size: 1.125rem; /* lg */
+            line-height: 1.75; /* leading-7 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .article-content pre {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 1rem; /* p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow-x: auto;
+            margin-bottom: 1.5rem; /* mb-6 */
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .article-content code {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
+            border-radius: 0.25rem; /* rounded */
+            font-weight: 600;
+        }
+        .article-content blockquote {
+            border-left: 4px solid #d1d5db; /* border-l-4 border-gray-300 */
+            padding-left: 1rem; /* pl-4 */
+            margin: 1.5rem 0; /* my-6 */
+            font-style: italic;
+            color: #4b5563; /* text-gray-700 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 網站標題欄 -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">
+                    <a href="NEWS.html">我的新聞網站</a>
+                </h1>
+                <p class="text-gray-600 mt-1">專注於最新動態與深度報導</p>
+            </div>
+            <a href="NEWS.html" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300">
+                &larr; 返回首頁
+            </a>
+        </div>
+    </header>
+
+    <!-- 主要文章內容 -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white rounded-lg shadow-xl overflow-hidden p-8 md:p-12">
+            
+            <!-- 文章標題 -->
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                什麼是 ARP 欺騙 (Arpspoofing)？一篇搞懂中間人攻擊
+            </h1>
+
+            <!-- 文章資訊 -->
+            <div class="text-gray-600 text-lg mb-8">
+                <span>發布日期：2025-11-17</span>
+                <span class="mx-2">|</span>
+                <span>分類：網路安全</span>
+            </div>
+
+            <!-- 文章主體 -->
+            <div class="article-content">
+                <p>
+                    您是否曾經擔心過，當您在咖啡廳使用公共 Wi-Fi 時，是否有人正在竊聽您的網路連線？`ARP 欺騙` (Arpspoofing) 就是駭客最常用來實現這種竊聽的技術之一。
+                </p>
+                <p>
+                    這種攻擊也稱為 **ARP 毒化 (ARP Poisoning)**，它是一種「中間人攻擊」(Man-in-the-Middle, MITM)，允許攻擊者在您不知情的情況下，攔截、查看甚至修改您與網路之間的所有流量。
+                </p>
+
+                <h2>ARP 是如何運作的？</h2>
+                <p>
+                    在我們了解「欺騙」之前，得先知道什麼是 `ARP` (Address Resolution Protocol，位址解析協定)。
+                </p>
+                <p>
+                    在一個區域網路中（例如您家或辦公室的 Wi-Fi），裝置之間溝通依賴兩個位址：
+                </p>
+                <ul class="list-disc list-inside text-lg mb-6 pl-4">
+                    <li class="mb-2"><strong>IP 位址</strong> (如 `192.168.1.100`)：像郵寄地址，用於網路層。</li>
+                    <li class="mb-2"><strong>MAC 位址</strong> (如 `00:1A:2B:3C:4D:5E`)：像身分證號碼，是網路卡獨一無二的硬體位址，用於鏈路層。</li>
+                </ul>
+                <p>
+                    當您的電腦 (IP: `192.168.1.100`) 想要傳送資料給路由器 (IP: `192.168.1.1`) 時，它只知道路由器的 IP。於是它會在網路中廣播一則訊息：「嘿！請問 IP 是 `192.168.1.1` 的人，你的 MAC 位址是什麼？」
+                </p>
+                <p>
+                    路由器收到後會回應：「嗨！我的 MAC 位址是 `AA:AA:AA:AA:AA:AA`」。
+                </p>
+                <p>
+                    您的電腦會將這個「IP-MAC」對應關係存入一個稱為 **ARP 快取 (ARP Cache)** 的暫存表格中，下次就不用再問了。
+                </p>
+
+                <h2>ARP 欺騙是如何進行的？</h2>
+                <p>
+                    ARP 協定一個天生的缺陷是：**它完全基於信任**。它不會驗證回應者的身分。
+                </p>
+                <p>
+                    攻擊者 (駭客) 正是利用了這一點。攻擊步驟如下：
+                </p>
+                <ol class="list-decimal list-inside text-lg mb-6 pl-4">
+                    <li class="mb-2"><strong>毒化受害者：</strong> 攻擊者會不斷地告訴您的電腦：「嗨！我就是路由器 (`192.168.1.1`)，我的 MAC 位址是 `CC:CC:CC:CC:CC:CC` (攻擊者自己的 MAC)」。</li>
+                    <li class="mb-2"><strong>毒化路由器：</strong> 同時，攻擊者也會告訴路由器：「嗨！我就是您的電腦 (`192.168.1.100`)，我的 MAC 位址是 `CC:CC:CC:CC:CC:CC` (攻擊者自己的 MAC)」。</li>
+                </ol>
+                <blockquote>
+                    結果：您的電腦誤以為攻擊者是路由器，而路由器也誤以為攻擊者是您。
+                </blockquote>
+                <p>
+                    從這一刻起，您所有傳送到網路的資料（例如您瀏覽的網頁、輸入的密碼），都會先經過攻擊者的電腦，然後才被轉發到真正的路由器。您完全不會察覺到任何異狀，但您的所有網路活動都已被攔截。
+                </p>
+
+                <h2>如何防禦 ARP 欺騙？</h2>
+                <p>
+                    雖然 ARP 欺騙聽起來很可怕，但有許多防禦手段：
+                </p>
+                <ul class="list-disc list-inside text-lg mb-6 pl-4">
+                    <li class="mb-2"><strong>靜態 ARP 表 (Static ARP)：</strong> 您可以在您的電腦和路由器上手動設定「IP-MAC」對應表，並設定為「靜態」。這就像是建立一份「白名單」，裝置只會相信這份名單，而忽略所有 ARP 廣播。但這在大型網路中難以管理。</li>
+                    <li class="mb-2"><strong>使用網路監控工具：</strong> 有許多工具（如 `Wireshark`, `Arpwatch`）可以監控網路上的 ARP 封包，當偵測到異常或衝突的 ARP 回應時，會向管理員發出警報。</li>
+                    <li class="mb-2"><strong>動態 ARP 檢測 (DAI)：</strong> 這是企業級網路交換器 (Switch) 上的進階功能。交換器會主動檢查 ARP 封包的合法性，並丟棄所有可疑的欺騙封包。</li>
+                    <li class="mb-2"><strong>使用 HTTPS：</strong> 即使您被 ARP 欺騙了，如果網站使用 HTTPS (Port 443)，攻擊者雖然能攔截到流量，但看到的只是一堆無法解讀的加密亂碼，您的密碼和敏感資料仍然是安全的。</li>
+                </ul>
+
+                <p class="font-bold text-red-600 bg-red-100 p-4 rounded-lg">
+                    ⚠️ <strong>法律與道德警告：</strong> ARP 欺騙是一種主動攻擊行為。在未經明確授權的情況下，對任何不屬於您的網路（包括公司、學校或公共 Wi-Fi）執行此類攻擊，均屬嚴重違法行為。本文僅供學術教育與防禦目的使用。
+                </p>
+
+            </div>
+
+        </article>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 我的新聞網站. 保留所有權利。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
