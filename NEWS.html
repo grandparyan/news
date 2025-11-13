@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新聞頁面範例</title>
+    <style>
+        body { font-family: Arial, "微軟正黑體", sans-serif; background: #f6f6f6; margin: 0; }
+        header { background: #223366; color: #fff; padding: 16px; }
+        header .logo { font-size: 2em; font-weight: bold; }
+        nav { margin-top: 12px; }
+        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
+        .container { display: flex; max-width: 1200px; margin: 20px auto; gap: 24px; }
+        main { flex: 3; }
+        aside { flex: 1; background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px #eee; }
+        .headline { background: #fff; padding: 16px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 6px #eee; }
+        .headline img { width: 100%; border-radius: 8px; }
+        .headline .title { font-size: 1.5em; margin: 12px 0; }
+        .news-list { display: flex; flex-direction: column; gap: 16px; }
+        .news-item { background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px #eee; display: flex; gap: 12px; }
+        .news-item img { width: 120px; height: 80px; object-fit: cover; border-radius: 8px; }
+        .news-info { flex: 1; }
+        .news-title { font-weight: bold; margin-bottom: 8px; }
+        .news-meta { font-size: 0.9em; color: #888; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">新聞快訊</div>
+        <nav>
+            <a href="#">首頁</a>
+            <a href="#">國際</a>
+            <a href="#">財經</a>
+            <a href="#">科技</a>
+            <a href="#">娛樂</a>
+            <a href="#">運動</a>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            <section class="headline">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="頭條新聞圖片">
+                <div class="title">重大頭條：全球經濟動盪</div>
+                <div class="news-meta">2025-11-13　|　By 新聞小編</div>
+                <p>
+                    全球經濟受各地衝突與政策影響，今日各大股市波動劇烈，專家建議投資人保持冷靜。
+                </p>
+            </section>
+            <section class="news-list">
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="新聞圖片1">
+                    <div class="news-info">
+                        <div class="news-title">科技新突破：AI助力醫療診斷</div>
+                        <div class="news-meta">2025-11-13 | 科技</div>
+                        <p>新一代人工智慧系統能更準確分析醫療數據，提升診斷效率與準確率。</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=400&q=80" alt="新聞圖片2">
+                    <div class="news-info">
+                        <div class="news-title">運動熱潮：馬拉松賽事盛況空前</div>
+                        <div class="news-meta">2025-11-13 | 運動</div>
+                        <p>本屆城市馬拉松吸引上萬人參與，展現健康生活新風潮。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <aside>
+            <h3>熱門新聞</h3>
+            <ul>
+                <li><a href="#">氣候變遷下的農業革命</a></li>
+                <li><a href="#">娛樂圈新星閃耀登場</a></li>
+                <li><a href="#">全球旅遊解封新展望</a></li>
+            </ul>
+            <h3>分類</h3>
+            <ul>
+                <li><a href="#">國際</a></li>
+                <li><a href="#">財經</a></li>
+                <li><a href="#">科技</a></li>
+                <li><a href="#">娛樂</a></li>
+                <li><a href="#">運動</a></li>
+            </ul>
+        </aside>
+    </div>
+</body>
+</html>
