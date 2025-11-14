@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 文章標題 -->
-    <title>什麼是 ipconfig？了解您的網路IP位址 - 我的新聞網站</title>
+    <title>什麼是 ip addr？一篇搞懂如何查看 Linux 網路IP位址 - 我的新聞網站</title>
     <!-- 載入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 載入 Inter 字體 -->
@@ -35,6 +35,13 @@
             overflow-x: auto;
             margin-bottom: 1.5rem; /* mb-6 */
             font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem; /* 稍小字體以容納更多程式碼 */
+        }
+        .article-content code {
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
+            border-radius: 0.25rem; /* rounded */
+            font-weight: 600;
         }
     </style>
 </head>
@@ -45,11 +52,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">
-                    <a href="NEWS.html">我的新聞網站</a>
+                    <a href="index.html">我的新聞網站</a>
                 </h1>
                 <p class="text-gray-600 mt-1">專注於最新動態與深度報導</p>
             </div>
-            <a href="NEWS.html" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300">
+            <a href="index.html" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300">
                 &larr; 返回首頁
             </a>
         </div>
@@ -61,61 +68,84 @@
             
             <!-- 文章標題 -->
             <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                什麼是 ipconfig？一篇搞懂如何查看您的網路IP位址
+                什麼是 ip addr？一篇搞懂如何查看 Linux 網路IP位址
             </h1>
 
             <!-- 文章資訊 -->
             <div class="text-gray-600 text-lg mb-8">
                 <span>發布日期：2025-11-14</span>
                 <span class="mx-2">|</span>
-                <span>分類：電腦教學</span>
+                <span>分類：Linux 教學</span>
             </div>
 
             <!-- 文章主體 -->
             <div class="article-content">
                 <p>
-                    當您的電腦無法上網，或是需要設定網路攝影機、NAS 等設備時，您最常被問到的問題之一可能就是：「您的 IP 位址是什麼？」這時，`ipconfig` 就是您在 Windows 系統上的最佳幫手。
+                    當您使用 Linux 伺服器或桌面系統時，如果需要查詢網路設定，`ip addr` 是現代 Linux 發行版中最重要、最標準的指令。
                 </p>
 
                 <p>
-                    您提到的 `ipaddr` (通常指 `ip addr`) 是 Linux 和 macOS (較新版本) 系統中用來查看 IP 位址的指令，而 `ipconfig` 則是專屬於 Windows 作業系統的。它們的功能大同小異，都是用來顯示電腦當前的網路設定。
+                    `ip addr` 是 `iproute2` 工具包的一部分，它取代了傳統（且現已過時）的 `ifconfig` 指令。`ip addr` 提供更詳細、更準確的網路介面資訊。
                 </p>
 
-                <h2>什麼是 ipconfig？</h2>
                 <p>
-                    `ipconfig` (IP Configuration) 是一個內建於 Windows 的命令列工具。透過它，您可以快速查詢到電腦所有網路介面卡（包括有線網路卡和 Wi-Fi 無線網路卡）的詳細設定資訊。
+                    這裡需要釐清一個常見的觀念：`ip addr` 是 <strong>Linux 系統</strong>專屬的指令。
+                </p>
+                <p>
+                    您提到的 Apple (macOS) 系統，以及其他 BSD 系統，傳統上使用的是 <code>ifconfig</code> 指令。而 Windows 系統則是使用 <code>ipconfig</code>。雖然它們的名稱很相似，但 <code>ip addr</code> 因其功能的強大與現代化，已成為 Linux 上的新標準。
+                </p>
+
+                <h2>什麼是 ip addr？</h2>
+                <p>
+                    `ip addr` (address) 是一個命令列工具，用於顯示和管理 Linux 系統上的網路介面卡及其 IP 位址設定。
                 </p>
                 
-                <h2>如何使用 ipconfig？</h2>
+                <h2>如何使用 ip addr？</h2>
                 <p>
-                    使用 `ipconfig` 非常簡單，只需要兩個步驟：
+                    使用 `ip addr` 非常簡單。您只需要打開「終端機」(Terminal)，然後輸入：
                 </p>
-                <ol class="list-decimal list-inside text-lg mb-6 pl-4">
-                    <li class="mb-2"><strong>開啟命令提示字元 (cmd)：</strong> 按下 `Win` + `R` 鍵，輸入 `cmd`，然後按下 Enter。</li>
-                    <li class="mb-2"><strong>輸入指令：</strong> 在跳出的黑色視窗中，輸入 `ipconfig`，然後按下 Enter。</li>
-                </ol>
+                <pre><code>ip addr</code></pre>
+                <p>
+                    您也可以使用更短的別名，例如 `ip a`，它們的效果完全相同。
+                </p>
+                <pre><code>ip a</code></pre>
                 
                 <h2>您該看哪些重要資訊？</h2>
                 <p>
-                    當您執行 `ipconfig` 後，會看到一串列表。對於一般使用者來說，最重要的資訊有三項：
+                    當您執行 `ip addr` 後，會看到類似以下的輸出：
                 </p>
 
-                <pre><code>乙太網路卡 乙太網路:
-
-   連線特定 DNS 尾碼 . . . . . . . . :
-   IPv4 位址 . . . . . . . . . . . . : 192.168.1.100
-   子網路遮罩 . . . . . . . . . . . . : 255.255.255.0
-   預設閘道 . . . . . . . . . . . . : 192.168.1.1</code></pre>
+                <pre><code>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:1a:2b:3c:4d:5e brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.100/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 86032sec preferred_lft 86032sec
+    inet6 fe80::21a:2bff:fe3c:4d5e/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever</code></pre>
+                
+                <p>
+                    雖然資訊看起來很多，但您只需要關注幾個關鍵點（以上述 `eth0` 介面為例）：
+                </p>
 
                 <ul class="list-disc list-inside text-lg mb-6 pl-4">
-                    <li class="mb-2"><strong>IPv4 位址 (IP Address)：</strong> 這就是您電腦在區域網路（例如您家中的 Wi-Fi 網路）中的「門牌號碼」，通常會是 `192.168.x.x` 或 `10.x.x.x` 這樣的格式。</li>
-                    <li class="mb-2"><strong>子網路遮罩 (Subnet Mask)：</strong> 用來判斷網路範圍。</li>
-                    <li class="mb-2"><strong>預設閘道 (Default Gateway)：</strong> 這通常是您家中那台 Wi-Fi 路由器 (分享器) 的 IP 位址。您所有的網路流量都會透過它連到外面的網際網路。</li>
+                    <li class="mb-2"><strong>`eth0`：</strong> 這是網路介面卡的名稱。`eth` 通常代表乙太網路（有線網路），`wlan` 或 `wlp` 則代表無線網路。</li>
+                    <li class="mb-2"><strong>`inet 192.168.1.100/24`：</strong> 這就是您電腦的 **IPv4 位址** (`192.168.1.100`)。後面的 `/24` 是 CIDR 標記法，代表子網路遮罩 (`255.255.255.0`)。</li>
+                    <li class="mb-2"><strong>`link/ether 00:1a:2b:3c:4d:5e`：</strong> 這是您的網路卡**硬體位址 (MAC Address)**。</li>
+                    <li class="mb-2"><strong>`inet6 fe80::...`：</strong> 這是您的 **IPv6 位址**。</li>
                 </ul>
 
-                <h2>macOS 或 Linux 怎麼辦？</h2>
+                <h2>如何查看路由表 (Gateway)？</h2>
                 <p>
-                    如果您使用的是 macOS 或 Linux 系統，您可以在「終端機」(Terminal) 中使用 `ip addr` (較新) 或 `ifconfig` (較舊) 指令，同樣可以獲得詳細的網路設定資訊。
+                    `ip addr` 專注於顯示「位址」。如果您想查看「預設閘道」(Default Gateway)，您需要使用 `iproute2` 工具包中的另一個指令：
+                </p>
+                <pre><code>ip route</code></pre>
+                <p>
+                    執行後，您會看到一行 `default via 192.168.1.1 ...`，那個 `192.168.1.1` 就是您的預設閘道。
                 </p>
             </div>
 
